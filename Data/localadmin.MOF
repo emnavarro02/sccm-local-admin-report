@@ -1,0 +1,11 @@
+[ SMS_Report (TRUE),
+  SMS_Group_Name ("LocalAdmins"),
+  SMS_Class_ID ("MICROSOFT|LocalAdmins|1.0"),
+  Namespace ("root\\\\cimv2") ]
+class Win32_LocalAdmins : SMS_Class_Template
+{
+    [SMS_Report (TRUE), key ] string Account;
+    [SMS_Report (TRUE)      ] string Domain;
+    [SMS_Report (TRUE), key ] string Name;
+    [SMS_Report (TRUE)      ] string Type; 
+};

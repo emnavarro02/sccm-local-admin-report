@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="AutoGen__5C6358F2_4BB6_4a1b_A16E_8D96795D8602_">
+      <DataSourceReference>/ConfigMgr_NI2/{5C6358F2-4BB6-4a1b-A16E-8D96795D8602}</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>11111111-1111-1111-1111-111111111111</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>AutoGen__5C6358F2_4BB6_4a1b_A16E_8D96795D8602_</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@UserSIDs">
+            <Value>=Parameters!UserSIDs.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@filterwildcard">
+            <Value>=Parameters!filterwildcard.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>Select DISTINCT sys.Netbios_Name0, arp.Domain0, arp.Name0 , arp.Type0 ,arp.account0
+FROM fn_rbac_R_System(@UserSIDs)  sys 
+JOIN v_GS_LocalAdmins arp ON sys.ResourceID = arp.ResourceID  
+WHERE sys.Netbios_Name0 like @filterwildcard</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Netbios_Name0">
+          <DataField>Netbios_Name0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Domain0">
+          <DataField>Domain0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Name0">
+          <DataField>Name0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Type0">
+          <DataField>Type0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="account0">
+          <DataField>account0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DataSetAdminID">
+      <Query>
+        <DataSourceName>AutoGen__5C6358F2_4BB6_4a1b_A16E_8D96795D8602_</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@UserTokenSIDs">
+            <Value>=Parameters!UserTokenSIDs.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>select dbo.fn_rbac_GetAdminIDsfromUserSIDs(@UserTokenSIDs) as UserSIDs</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="UserSIDs">
+          <DataField>UserSIDs</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1.96615in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.96615in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.96615in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.96615in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.375in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Netbios Name</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#622424</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#4e0000</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Domain</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#622424</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#4e0000</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Name</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#622424</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#4e0000</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Type Of Account</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#622424</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#4e0000</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.375in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Netbios_Name0">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Netbios_Name0.Value</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Netbios_Name0</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#e5e5e5</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Domain0">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Domain0.Value</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Domain0</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#e5e5e5</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Name0">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Name0.Value</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Name0</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#e5e5e5</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Type0">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Type0.Value</Value>
+                                  <Style>
+                                    <FontFamily>Verdana</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Type0</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#e5e5e5</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>1.36042in</Top>
+            <Left>0.43833in</Left>
+            <Height>0.75in</Height>
+            <Width>7.8646in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>2.25in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>10.17083in</Width>
+      <Page>
+        <PageFooter>
+          <Height>0.45in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="UserTokenSIDs">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=SrsResources.UserIdentity.GetUserSIDs(User!UserID)</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="UserSIDs">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DataSetAdminID</DataSetName>
+          <ValueField>UserSIDs</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="filterwildcard">
+      <DataType>String</DataType>
+      <Prompt>Name of Computer</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="NIC">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <CodeModules>
+    <CodeModule>SrsResources, culture=neutral</CodeModule>
+  </CodeModules>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportServerUrl>http://nicsccm02/ReportServer</rd:ReportServerUrl>
+  <rd:ReportID>6fbd236a-d836-4950-8788-14b828deb616</rd:ReportID>
+</Report>

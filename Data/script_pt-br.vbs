@@ -1,3 +1,6 @@
+' Modified version of https://docs.microsoft.com/en-us/archive/blogs/sudheesn/collect-hardware-inventory-of-local-admins
+' to support computers in pt-br language. 
+
 On Error Resume Next
 
 Dim wbemCimtypeSint16 
@@ -114,6 +117,4 @@ For Each objMember In objGroup.Members
 	oNewObject.Account = objMember.Class 
 	oNewObject.Name = Name
 	oNewObject.Put_ 
-Next 
-
-
+Next
